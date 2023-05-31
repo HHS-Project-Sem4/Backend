@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
 
-[Route("api/voorspel")]
+[Route("[controller]")]
 [ApiController]
 public class PredictionController
 {
