@@ -1,0 +1,25 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace Backend.Controllers;
+
+[Route("api/opslag")]
+[ApiController]
+public class OpslagController
+{
+    /*public class PredictionController(dbContext _context)
+    {
+        context = _context;
+    }*/
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<int>> getSupplyByProduct(int id)
+    {
+
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<int[,]>>> getSupply()
+    {
+
+    }
+}
