@@ -14,12 +14,12 @@ public class OpslagController
     [HttpGet("{id}")]
     public async Task<ActionResult<int>> getSupplyByProduct(int id)
     {
-
+        return null;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<int[,]>>> getSupply()
     {
-
+        return null;
     }
 }

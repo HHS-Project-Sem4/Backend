@@ -59,9 +59,9 @@ public class outdoorFusionContext : DbContext
             .HasOne(order_Details => order_Details.product)
             .WithMany(product => product.orders);
 
-        // iets met dat doen
-        //builder.Entity<Order_Details>()
-        //    .HasOne(order_Details => order_Details.medewerker)
-        //    .WithMany(medewerker => medewerker.orders);
+ 
+        builder.Entity<Order_Details>()
+            .HasOne(order_Details => order_Details.date)
+            .WithOne(day => day.order);
     }
 }
