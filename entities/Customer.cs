@@ -6,4 +6,5 @@ public class Customer {
     public string region { get; set; }
     public string country { get; set; }
     public string company_name { get; set; }
+    public List<Order_Details>? orders { get; set; }  = null;
 }

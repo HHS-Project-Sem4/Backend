@@ -5,4 +5,5 @@ public class Medewerker {
     public string city { get; set; }
     public string region { get; set; }
     public string country { get; set; }
+    public List<Order_Details>? orders { get; set; }  = null;
 }

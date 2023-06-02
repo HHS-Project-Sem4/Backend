@@ -20,17 +20,48 @@ public class outdoorFusionContext : DbContext
         builder.Entity<Product>()
             .ToTable("Product");
 
+        builder.Entity<Product>()
+            .HasKey(product => product.id);
+
         builder.Entity<Customer>()
             .ToTable("Customer");
+
+        builder.Entity<Customer>()
+            .HasKey(customer => customer.id);
 
         builder.Entity<Medewerker>()
             .ToTable("Medewerker");
 
+        builder.Entity<Medewerker>()
+            .HasKey(medewerker => medewerker.id);
+
         builder.Entity<Day>()
             .ToTable("Day");
+        
+        //builder.Entity<Day>()
+        //.HasKey(day => day.id);
 
         builder.Entity<Order_Details>()
             .ToTable("Order_Details");
-        
+
+        builder.Entity<Order_Details>()
+            .HasKey(order_Details => order_Details.number);
+
+        builder.Entity<Order_Details>()
+            .HasOne(order_Details => order_Details.medewerker)
+            .WithMany(medewerker => medewerker.orders);
+
+        builder.Entity<Order_Details>()
+            .HasOne(order_Details => order_Details.klant)
+            .WithMany(klant => klant.orders);
+
+        builder.Entity<Order_Details>()
+            .HasOne(order_Details => order_Details.product)
+            .WithMany(product => product.orders);
+
+        // iets met dat doen
+        //builder.Entity<Order_Details>()
+        //    .HasOne(order_Details => order_Details.medewerker)
+        //    .WithMany(medewerker => medewerker.orders);
     }
 }

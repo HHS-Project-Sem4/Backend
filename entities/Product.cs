@@ -6,4 +6,5 @@ public class Product {
     public string colour { get; set; }
     public float price { get; set; }
     public int voorraad { get; set; }
+    public List<Order_Details>? orders { get; set; }  = null;
 }
