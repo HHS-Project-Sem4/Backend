@@ -4,7 +4,7 @@ namespace Backend.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class ProductController
+public class ProductController : ControllerBase
 {
     private readonly outdoorFusionContext context;
     public ProductController(outdoorFusionContext _context)
@@ -21,7 +21,8 @@ public class ProductController
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> getAllProducts()
     {
-        return null;
+        var producten = context.Product.ToList();
+        return producten;
     }
 
     [HttpGet("cost/{id}")]

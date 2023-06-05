@@ -4,7 +4,7 @@ namespace Backend.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class OpslagController
+public class OpslagController : ControllerBase
 {
     private readonly outdoorFusionContext context;
     public OpslagController(outdoorFusionContext _context)
