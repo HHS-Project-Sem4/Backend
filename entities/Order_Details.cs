@@ -1,3 +1,5 @@
+using Backend.entities;
+
 public class Order_Details {
     public int ORDER_DETAIL_id { get; set; }
     public int ORDER_HEADER_id { get; set; }

@@ -1,3 +1,4 @@
+using Backend.entities;
 using Microsoft.EntityFrameworkCore;
 
 public class outdoorFusionContext : DbContext
@@ -27,7 +28,7 @@ public class outdoorFusionContext : DbContext
             .ToTable("Product");
 
         builder.Entity<Product>()
-            .HasKey(product => product.PRODUCT_id);
+            .HasKey(product => product.ProductId);
 
         builder.Entity<Customer>()
             .ToTable("Customer");
