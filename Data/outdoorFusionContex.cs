@@ -18,6 +18,7 @@ public class outdoorFusionContext : DbContext
         optionsBuilder.UseSqlServer("Server=outdoorfusionserver.database.windows.net;Database=OutdoorFusion;User Id=floep;Password=WaaromWilDePausNietGecremeerdWorden?HijLeeftNog;");
     }
 
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -43,8 +44,8 @@ public class outdoorFusionContext : DbContext
         builder.Entity<Order_Date>()
             .ToTable("Day");
         
-        //builder.Entity<Day>()
-        //.HasKey(day => day.id);
+        builder.Entity<Order_Date>()
+            .HasKey(order_date => new { order_date.DAY_date, order_date.DAY_MONTH_nr , order_date.DAY_QUARTER_nr , order_date.DAY_YEAR_nr});
 
         builder.Entity<Order_Details>()
             .ToTable("Order_Details");
@@ -67,6 +68,7 @@ public class outdoorFusionContext : DbContext
  
         builder.Entity<Order_Details>()
             .HasOne(order_Details => order_Details.DAY_date)
-            .WithOne(day => day.DAY_order);
+            .WithOne(day => day.DAY_order)
+            .HasForeignKey<Order_Details>(order_Details => new { order_Details.DAY_date_, order_Details.DAY_MONTH_nr , order_Details.DAY_QUARTER_nr , order_Details.DAY_YEAR_nr});
     }
 }
