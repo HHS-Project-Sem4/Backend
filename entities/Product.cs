@@ -1,10 +1,10 @@
 public class Product {
-    public int id { get; set; }
-    public string name { get; set; }
-    public int category { get; set; }
-    public int sub_category { get; set; }
-    public string colour { get; set; }
-    public float price { get; set; }
-    public int voorraad { get; set; }
-    public List<Order_Details>? orders { get; set; }  = null;
+    public int PRODUCT_id { get; set; }
+    public string PRODUCT_name { get; set; }
+    public int PRODUCT_category { get; set; }
+    public int PRODUCT_sub_category { get; set; }
+    public string PRODUCT_colour { get; set; }
+    public float PRODUCT_prod_cost { get; set; }
+    public int PRODUCT_storage_quantity { get; set; }
+    public List<Order_Details>? PRODUCT_orders { get; set; }  = null;
 }
