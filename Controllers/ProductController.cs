@@ -6,10 +6,11 @@ namespace Backend.Controllers;
 [ApiController]
 public class ProductController
 {
-    /*public class ProductController(dbContext _context)
+    private readonly outdoorFusionContext context;
+    public ProductController(outdoorFusionContext _context)
     {
         context = _context;
-    }*/
+    }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Product>> getProductByID(int id)

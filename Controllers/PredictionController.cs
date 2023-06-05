@@ -6,10 +6,11 @@ namespace Backend.Controllers;
 [ApiController]
 public class PredictionController
 {
-    /*public class PredictionController(dbContext _context)
+    private readonly outdoorFusionContext context;
+    public PredictionController(outdoorFusionContext _context)
     {
         context = _context;
-    }*/
+    }
 
     [HttpGet("/voorraad")]
     public async Task<ActionResult<IEnumerable<int[,]>>> predictVoorraad()

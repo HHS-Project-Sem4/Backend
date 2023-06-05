@@ -6,10 +6,12 @@ namespace Backend.Controllers;
 [ApiController]
 public class OpslagController
 {
-    /*public class PredictionController(dbContext _context)
+    private readonly outdoorFusionContext context;
+    public OpslagController(outdoorFusionContext _context)
     {
         context = _context;
-    }*/
+    }
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<int>> getSupplyByProduct(int id)

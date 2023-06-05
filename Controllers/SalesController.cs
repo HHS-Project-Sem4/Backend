@@ -6,10 +6,11 @@ namespace Backend.Controllers;
 [ApiController]
 public class SalesController
 {
-    /*public class PredictionController(dbContext _context)
+    private readonly outdoorFusionContext context;
+    public SalesController(outdoorFusionContext _context)
     {
         context = _context;
-    }*/
+    }
 
     [HttpGet("date/{date}")]
     public async Task<ActionResult<IEnumerable<Order_Details>>> getSalesByDate(string date)
