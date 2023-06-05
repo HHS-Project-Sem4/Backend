@@ -28,48 +28,48 @@ public class outdoorFusionContext : DbContext
             .ToTable("Product");
 
         builder.Entity<Product>()
-            .HasKey(product => product.ProductId);
+            .HasKey(product => product.productId);
 
         builder.Entity<Customer>()
             .ToTable("Customer");
 
         builder.Entity<Customer>()
-            .HasKey(customer => customer.CUSTOMER_id);
+            .HasKey(customer => customer.customerId);
 
         builder.Entity<Employee>()
             .ToTable("Medewerker");
 
         builder.Entity<Employee>()
-            .HasKey(medewerker => medewerker.EMPLOYEE_id);
+            .HasKey(medewerker => medewerker.employeeId);
 
         builder.Entity<Order_Date>()
             .ToTable("Day");
         
         builder.Entity<Order_Date>()
-            .HasKey(order_date => new { order_date.DAY_date, order_date.DAY_MONTH_nr , order_date.DAY_QUARTER_nr , order_date.DAY_YEAR_nr});
+            .HasKey(order_date => new { order_date.date, order_date.monthNr , order_date.quarterNr , order_date.yearNr});
 
         builder.Entity<Order_Details>()
             .ToTable("Order_Details");
 
         builder.Entity<Order_Details>()
-            .HasKey(order_Details => order_Details.ORDER_DETAIL_id);
+            .HasKey(order_Details => order_Details.orderDetailId);
 
         builder.Entity<Order_Details>()
-            .HasOne(order_Details => order_Details.EMPLOYEE_id)
-            .WithMany(medewerker => medewerker.EMPLOYEE_orders);
+            .HasOne(order_Details => order_Details.employee)
+            .WithMany(medewerker => medewerker.orders);
 
         builder.Entity<Order_Details>()
-            .HasOne(order_Details => order_Details.CUSTOMER_id)
-            .WithMany(klant => klant.CUSTOMER_orders);
+            .HasOne(order_Details => order_Details.customer)
+            .WithMany(klant => klant.orders);
 
         builder.Entity<Order_Details>()
-            .HasOne(order_Details => order_Details.PRODUCT_id)
-            .WithMany(product => product.PRODUCT_orders);
+            .HasOne(order_Details => order_Details.product)
+            .WithMany(product => product.orders);
 
  
         builder.Entity<Order_Details>()
-            .HasOne(order_Details => order_Details.DAY_date)
-            .WithOne(day => day.DAY_order)
-            .HasForeignKey<Order_Details>(order_Details => new { order_Details.DAY_date_, order_Details.DAY_MONTH_nr , order_Details.DAY_QUARTER_nr , order_Details.DAY_YEAR_nr});
+            .HasOne(order_Details => order_Details.day)
+            .WithOne(day => day.order)
+            .HasForeignKey<Order_Details>(order_Details => new { order_Details.date, order_Details.monthNr , order_Details.quarterNr , order_Details.yearNr});
     }
 }
