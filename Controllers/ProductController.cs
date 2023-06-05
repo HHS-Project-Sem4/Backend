@@ -16,7 +16,8 @@ public class ProductController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Product>> getProductByID(int id)
     {
-        return null;
+        var product = context.Product.Find(id);
+        return product;
     }
 
     [HttpGet]
@@ -26,15 +27,19 @@ public class ProductController : ControllerBase
         return producten;
     }
 
-    [HttpGet("cost/{id}")]
-    public async Task<ActionResult<int>> getProductionCostByID(int id)
+    [HttpGet("category/{category}")]
+    public async Task<ActionResult<IEnumerable<Product>>> getProductsByCategory(string category)
     {
-        return null;
+        var producten = context.Product.ToList();
+        var result = producten.FindAll(p => p.category == category);
+        return result;
     }
 
-    [HttpGet("type/{type}")]
-    public async Task<ActionResult<IEnumerable<Product>>> getProductsByType(int type)
+    [HttpGet("subcategory/{subCategory}")]
+    public async Task<ActionResult<IEnumerable<Product>>> getProductsBySubCategory(string subCategory)
     {
-        return null;
+        var producten = context.Product.ToList();
+        var result = producten.FindAll(p => p.subCategory == subCategory);
+        return result;
     }
 }

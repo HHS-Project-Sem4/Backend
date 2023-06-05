@@ -16,12 +16,34 @@ public class OpslagController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<int>> getSupplyByProduct(int id)
     {
-        return null;
+        var product = context.Product.Find(id);
+        return product.storageQuantity;
     }
 
+    ////////////////////////////////////////////
+    //
+    //
+    // is deze nog wel nodig???
+    //
+    //
+    ///////////////////////////////////////////
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<int[,]>>> getSupply()
+    public async Task<ActionResult<IEnumerable<QuantityType>>> getSupply()
     {
-        return null;
+        var producten = context.Product.ToList();
+        List<QuantityType> opslag = new List<QuantityType>();
+        int i = 0;
+        foreach (var product in producten)
+        {
+            QuantityType q = new QuantityType() {id = product.productId, quantity = product.storageQuantity};
+            opslag.Add(q);
+            i++;
+        }
+        return opslag;
+    }
+    public class QuantityType
+    {
+        public int id {get; set;}
+        public int quantity {get; set;}
     }
 }
