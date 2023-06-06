@@ -21,7 +21,8 @@ public class SalesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Order_Details>>> getSales()
     {
-        return null;
+        var sales = context.Order_Details.ToList();
+        return sales;
     }
 
     [HttpGet("product/{id}")]
