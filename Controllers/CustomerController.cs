@@ -14,14 +14,14 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Customer>>> getSalesByCustomer()
+    public async Task<ActionResult<IEnumerable<Customer>>> getCustomers()
     {
         var customers = context.Customer.ToList();
         return customers;
     }
 
-    [HttpGet("customer/{id}")]
-    public async Task<ActionResult<Customer>> getSalesByCustomer(int id)
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Customer>> getCustomer(int id)
     {
         var customer = context.Customer.Find(id);
         return customer;
