@@ -4,10 +4,10 @@ namespace Backend.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class OpslagController : ControllerBase
+public class VoorraadController : ControllerBase
 {
     private readonly outdoorFusionContext context;
-    public OpslagController(outdoorFusionContext _context)
+    public VoorraadController(outdoorFusionContext _context)
     {
         context = _context;
     }
@@ -20,13 +20,6 @@ public class OpslagController : ControllerBase
         return product.storageQuantity;
     }
 
-    ////////////////////////////////////////////
-    //
-    //
-    // is deze nog wel nodig???
-    //
-    //
-    ///////////////////////////////////////////
     [HttpGet]
     public async Task<ActionResult<IEnumerable<QuantityType>>> getSupply()
     {
@@ -40,10 +33,5 @@ public class OpslagController : ControllerBase
             i++;
         }
         return opslag;
-    }
-    public class QuantityType
-    {
-        public int id {get; set;}
-        public int quantity {get; set;}
     }
 }

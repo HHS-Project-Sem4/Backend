@@ -11,7 +11,6 @@ public class outdoorFusionContext : DbContext
     public DbSet<Product> Product { get; set; } = default!;
     public DbSet<Customer> Customer { get; set; } = default!;
     public DbSet<Employee> Medewerker { get; set; } = default!;
-    public DbSet<Order_Date> Day { get; set; } = default!;
     public DbSet<Order_Details> Order_Details { get; set; } = default!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,12 +41,6 @@ public class outdoorFusionContext : DbContext
         builder.Entity<Employee>()
             .HasKey(medewerker => medewerker.employeeId);
 
-        builder.Entity<Order_Date>()
-            .ToTable("Day");
-        
-        builder.Entity<Order_Date>()
-            .HasKey(order_date => new { order_date.date, order_date.monthNr , order_date.quarterNr , order_date.yearNr});
-
         builder.Entity<Order_Details>()
             .ToTable("Order_Details");
 
@@ -65,11 +58,5 @@ public class outdoorFusionContext : DbContext
         builder.Entity<Order_Details>()
             .HasOne(order_Details => order_Details.product)
             .WithMany(product => product.orders);
-
- 
-        builder.Entity<Order_Details>()
-            .HasOne(order_Details => order_Details.day)
-            .WithOne(day => day.order)
-            .HasForeignKey<Order_Details>(order_Details => new { order_Details.date, order_Details.monthNr , order_Details.quarterNr , order_Details.yearNr});
     }
 }
