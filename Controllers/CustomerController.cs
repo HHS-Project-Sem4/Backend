@@ -51,4 +51,24 @@ public class CustomerController : ControllerBase
         }
         return growthPerMonth;
     }
+
+    [HttpGet("byCountry")]
+    public async Task<ActionResult<IEnumerable<CountryQuantityType>>> getCustomersByCountry()
+    {
+        var customers = context.Customer.ToList();
+        var result = new List<CountryQuantityType>() {};
+        var countries = customers.Select(p => p.country).Distinct();
+
+        foreach(string _country in countries)
+        {
+            var c = new CountryQuantityType() {country = _country, quantity = 0};
+            foreach(Customer customer in customers)
+            {
+                if(customer.country == _country)
+                c.quantity++;
+            }
+            result.Add(c);
+        }
+        return (result == null) ? StatusCode(404) : result;
+    }
 }
