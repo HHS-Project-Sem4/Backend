@@ -17,14 +17,14 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<Product>> getProductByID(int id)
     {
         var product = context.Product.Find(id);
-        return product;
+        return (product == null) ? StatusCode(404) : product;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> getAllProducts()
     {
         var producten = context.Product.ToList();
-        return producten;
+        return (producten == null) ? StatusCode(404) : producten;
     }
 
     [HttpGet("category/{category}")]
@@ -32,14 +32,33 @@ public class ProductController : ControllerBase
     {
         var producten = context.Product.ToList();
         var result = producten.FindAll(p => p.category == category);
-        return result;
+        return (result == null) ? StatusCode(404) : result;
     }
+
+    [HttpGet("categories")]
+    public async Task<IEnumerable<string>> getAllCategories()
+    {
+        var producten = context.Product.ToList();
+        var cats = producten.Select(p => p.category).Distinct();
+
+        return cats;
+    }
+
 
     [HttpGet("subcategory/{subCategory}")]
     public async Task<ActionResult<IEnumerable<Product>>> getProductsBySubCategory(string subCategory)
     {
         var producten = context.Product.ToList();
         var result = producten.FindAll(p => p.subCategory == subCategory);
-        return result;
+        return (result == null) ? StatusCode(404) : result;
+    }
+
+    [HttpGet("subcategories")]
+    public async Task<IEnumerable<string>> getAllSubCategories()
+    {
+        var producten = context.Product.ToList();
+        var cats = producten.Select(p => p.subCategory).Distinct();
+
+        return cats;
     }
 }

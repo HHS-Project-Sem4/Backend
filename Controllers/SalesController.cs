@@ -18,35 +18,35 @@ public class SalesController : ControllerBase
     {
         var dates = Functionality.splitDates(date);
         var sales = context.Order_Details.Where(o => o.day >= dates[0] && o.day <= dates[1]).ToList();
-        return sales;
+        return (sales == null) ? StatusCode(404) : sales;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Order_Details>>> getSales()
     {
         var sales = context.Order_Details.ToList();
-        return sales;
+        return (sales == null) ? StatusCode(404) : sales;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Order_Details>> getSales(int id)
+    public async Task<ActionResult<Order_Details>> getSale(int id)
     {
         var sale = context.Order_Details.Find(id);
-        return sale;
+        return (sale == null) ? StatusCode(404) : sale;
     }
 
     [HttpGet("product/{id}")]
     public async Task<ActionResult<IEnumerable<Order_Details>>> getSalesByProduct(int id)
     {
         var sales = context.Order_Details.Where(o => o.productId == id).ToList();
-        return sales;
+        return (sales == null) ? StatusCode(404) : sales;
     }
 
     [HttpGet("customer/{id}")]
     public async Task<ActionResult<IEnumerable<Order_Details>>> getSalesByCustomer(int id)
     {
         var sales = context.Order_Details.Where(o => o.customerId == id).ToList();
-        return sales;
+        return (sales == null) ? StatusCode(404) : sales;
     }
 
     /////////////////////////////////////// NIET GEBRUIKEN DUURT TE LANG  

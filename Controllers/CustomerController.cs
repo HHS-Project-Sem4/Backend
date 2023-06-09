@@ -14,17 +14,17 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Customer>>> getCustomers()
+    public async Task<ActionResult<IEnumerable<Customer>>> getAllCustomers()
     {
         var customers = context.Customer.ToList();
-        return customers;
+        return (customers == null) ? StatusCode(404) : customers;
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Customer>> getCustomer(int id)
     {
         var customer = context.Customer.Find(id);
-        return customer;
+        return (customer == null) ? StatusCode(404) : customer;
     }
 
     //zoals: 1,01-01-1997X31-12-1997

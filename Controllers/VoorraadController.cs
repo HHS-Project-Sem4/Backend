@@ -17,7 +17,7 @@ public class VoorraadController : ControllerBase
     public async Task<ActionResult<int>> getSupplyByProduct(int id)
     {
         var product = context.Product.Find(id);
-        return product.storageQuantity;
+        return (product == null) ? StatusCode(404) : product.storageQuantity;
     }
 
     [HttpGet]
@@ -32,6 +32,6 @@ public class VoorraadController : ControllerBase
             opslag.Add(q);
             i++;
         }
-        return opslag;
+        return (opslag == null) ? StatusCode(04) : opslag;
     }
 }
