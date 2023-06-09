@@ -15,11 +15,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseCors(builder =>
-   {
-       builder.WithOrigins("http://localhost:3000", "https://dev--outdoorfusion-dashboard.netlify.app/", "https://outdoorfusion-dashboard.netlify.app/")
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-   });
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
 
 app.UseSwagger();
 app.UseSwaggerUI();
