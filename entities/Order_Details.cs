@@ -1,14 +1,20 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+using Backend.entities;
+
+[Table("Order_Details")] 
 public class Order_Details {
-    public int number { get; set; }
-    public int quantity { get; set; }
-    public int unit_price { get; set; }
+    [Key] [Column("ORDER_DETAIL_id")] public int orderDetailId { get; set; }
+    [Column("ORDER_HEADER_id")]public int orderHeaderId { get; set; }
+    [Column("ORDER_DETAIL_order_quantity")]public int orderQuantity { get; set; }
+    [Column("ORDER_DETAIL_unit_price")]public double unitPrice { get; set; }
 
-    public Day date { get; set; }
-
-    public int medewerker_id { get; set; }
-    public Medewerker medewerker { get; set; }
-    public int klant_id { get; set; }
-    public Customer klant { get; set; }
-    public int product_id { get; set; }
-    public Product product { get; set; }
+    [Column("Day_date")]public DateTime day { get; set; }
+    [Column("EMPLOYEE_id")]public int? employeeId { get; set; }
+    public Employee? employee { get; set; }
+    [Column("CUSTOMER_id")]public int? customerId { get; set; }
+    public Customer? customer { get; set; }
+    [Column("PRODUCT_id")]public int? productId { get; set; }
+    public Product? product { get; set; }
 }

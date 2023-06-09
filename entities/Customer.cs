@@ -1,9 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Backend.entities;
+
+[Table("Customer")] 
 public class Customer {
-    public int id { get; set; }
-    public string address { get; set; }
-    public string city { get; set; }
-    public string state { get; set; }
-    public string region { get; set; }
-    public string country { get; set; }
-    public string company_name { get; set; }
+    [Key] [Column("CUSTOMER_id")] public int customerId { get; set; }
+    [Column("CUSTOMER_address")] public string? address { get; set; }
+    [Column("CUSTOMER_city")] public string? city { get; set; }
+    [Column("CUSTOMER_state")] public string? state { get; set; }
+    [Column("CUSTOMER_region")] public string? region { get; set; }
+    [Column("CUSTOMER_country")] public string? country { get; set; }
+    [Column("CUSTOMER_company_name")] public string? companyName { get; set; }
+    public List<Order_Details>? orders { get; set; }  = null;
 }
